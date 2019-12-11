@@ -16,17 +16,17 @@ Cell.prototype.show = function() {
   rect(this.x, this.y, this.w, this.w);
   if (this.revealed) {
     if (this.bee) {
-      fill(0,255,0);
-      ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
-    } else {
-      fill(255,220,220);
-      rect(this.x, this.y, this.w, this.w);
       fill(255,0,0);
       ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
+    } else {
+      fill(0,255,0);
+      rect(this.x, this.y, this.w, this.w);
+      fill(255,0,0);
+      //ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
       if (this.neighborCount > 0) {
         textAlign(CENTER);
         fill(0);
-        //text(this.neighborCount, this.x + this.w * 0.5, this.y + this.w - 6);
+        text(this.neighborCount, this.x + this.w * 0.5, this.y + this.w - 6);
       }
     }
   }
@@ -62,7 +62,7 @@ Cell.prototype.contains = function(x, y) {
 Cell.prototype.reveal = function() {
   this.revealed = true;
   if (this.neighborCount == 0) {
-    
+
     this.floodFill();
   }
 }
@@ -77,7 +77,7 @@ Cell.prototype.floodFill = function() {
       if (j < 0 || j >= rows) continue;
 
       var neighbor = grid[i][j];
-     
+
       if (!neighbor.revealed) {
         neighbor.reveal();
       }
